@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import NewsItem from '../../../../tal-ing/lec04/src/NewsItem';
-
-const NewsListBlock = styled.div`
-    padding-bottom: 3rem;
-    width: 960px;
-    margin: 0 auto;
-`;
+import NewsItem from './NewsItem';
 
 class NewsList extends Component {
     state = {
@@ -18,29 +12,38 @@ class NewsList extends Component {
         try {
             this.setState({ loading: true });
 
+            const { category } = this.props;
+            const query = category === 'all' ? '' : `&category=${category}`;
+
             const res = await axios
-                .get('https://newsapi.org/v2/top-headlines?country=kr&apiKey=161e1b76750143409d08fa2a77972db2');
+                .get(`https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=161e1b76750143409d08fa2a77972db2`);
                 
             this.setState({ articles: res.data.articles });
         } catch (err) {
             console.error(err);
         }
+
+        this.setState({ loading: false });
     }
 
     componentDidMount() {
         this.loadData();
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.category !== this.props.category) this.loadData();
+    }
+
     render() {
         const { articles, loading } = this.state;
 
-        if (!articles || loading) return <NewsListBlock>Loading...</NewsListBlock>
+        if (!articles || loading) return <div>Loading...</div>
         return (
-            <NewsListBlock>
-                articles.map(article => {
-                    <NewsItem key={articles.url} article={article} />
-                })
-            </NewsListBlock>
+            <div>
+                {articles.map(article => (
+                    <NewsItem key={article.url} article={article} />
+                ))}
+            </div>
         );
     }
 }

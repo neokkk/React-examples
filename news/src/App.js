@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
-import './components/NewsList';
+import { Route } from 'react-router-dom';
+import NewsPage from './pages/NewsPage';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <NewsList />
-      </div>
+      <>
+        <Route path="/:category?" component={NewsPage} />
+      </>
     );
   }
 }
