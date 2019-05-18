@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Photo Print Component</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        class PhotoText extends React.Component {
+
+            getImgUrl() {
+                const id = this.props.image,
+                      url = 'img/' + id + '.jpg';
+                      
+                return url;
+            }
+
+            render() {
+                const label = this.props.label,
+                      url = this.getImgUrl(),
+                      boxStyle = {
+                          border : '1px solid gray',
+                          margin : '8px',
+                          padding : '4px'
+                      }
+
+                return (
+                      <div style={boxStyle}>
+                        <img src={url} width="200px" height="100px" />
+                        <span>{label}</span>  
+                      </div>
+                )
+            }
+        }
+
+        const dom = <div>
+            <PhotoText image="pic1" label="태양이 눈부신 해변~"/>    
+            <PhotoText image="pic2" label="바다에서 수영하기!"/>    
+            <PhotoText image="pic3" label="하늘을 바라보며 휴식!"/>    
+        </div>
+
+        ReactDOM.render(dom, document.getElementById('root'));
+    </script>
+</body>
+</html>

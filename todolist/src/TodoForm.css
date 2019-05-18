@@ -1,0 +1,20 @@
+.TodoForm {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(162, 164, 165);
+}
+
+#formText {
+  width: 400px;
+  height: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#frm button {
+  width: 60px;
+  height: 40px;
+}

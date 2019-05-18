@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>List Component</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class List extends React.Component {
+            render() {
+                const items = this.props.items.split(',').map(e => <li>{e}</li>);
+                let title = this.props.title;
+
+                if (!title) title = 'List';
+
+                return (
+                    <div>
+                        <h3>{title}</h3>
+                        <ul>{items}</ul>    
+                    </div>
+                )
+            }
+        }
+        const dom = 
+            // <List items="Red, Orange, Rainbow, Yellow, Green, Blue, Pink, Gray" />
+            <div>
+                <List title="Fruit" items="Apple, Banana, Carrot, Durian, Egg, Fineapple" />
+                <List title="Veget" items="Grape, Hores, IceCream, Juice, Kakao, Lemon" />
+            </div>;
+
+        ReactDOM.render(dom, document.getElementById('root'));
+    </script>
+</body>
+</html>

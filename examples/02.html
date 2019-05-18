@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Binary Clock</title>
+    <style>
+        body { font-size : 32px; text-align : center; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        setInterval(updateTime, 1000);
+
+        function updateTime() {
+            const d = new Date();
+            const [hour, min, sec] = [
+                addZero(d.getHours()),
+                addZero(d.getMinutes()),
+                addZero(d.getSeconds())
+            ];
+            const timeStr = hour + min + sec;
+
+            const style = { color : 'brown'};
+
+            const lines = [];
+
+            for (let i = 0; i < timeStr.length; i++) {
+                const tmp = parseInt(timeStr.substr(i, 1)),
+                      bin = '0000' + tmp.toString(2),
+                      bin8 = bin.substr(bin.length - 4, 4);
+                
+                for (let j = 0; j < bin8.length; j++){
+                    bin8.substr(j, 1) === '0' ? 
+                    lines.push(<span style={style}>○</span>) :
+                    lines.push(<span style={style}>●</span>);
+                }
+                lines.push(<br />);
+            }
+            ReactDOM.render(<div>{lines}</div>, document.getElementById('root'));
+        }
+
+        function addZero(num) {
+             (num < 10) ? num = '0' + num : num;
+             return num;
+        }
+
+    </script>
+</body>
+</html>

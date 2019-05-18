@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Click Event</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class Box extends React.Component {
+            state = {
+                checked : false
+            }
+
+            render() {
+                let mark = '□',
+                    boxStyle = { fontWeight : 'normal' };
+
+                if (this.state.checked) {
+                    mark = '■';
+                    boxStyle = { fontWeight : 'bold' };
+                }
+
+                const clickHandler = e => {
+                    const newValue = !this.state.checked;
+                    this.setState({ checked : newValue });
+                }
+
+                return (
+                    <div onClick={clickHandler} style={boxStyle}>{mark} {this.props.label}</div>
+                )
+            }
+        }
+
+        const dom = <div>
+            <Box label="A" />    
+            <Box label="B" />    
+            <Box label="C" />    
+            <Box label="D" />    
+        </div>
+
+        ReactDOM.render(dom, document.getElementById('root'));
+    </script>
+</body>
+</html>

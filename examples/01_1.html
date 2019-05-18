@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Clock</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // setInterval(showClock, 1000);
+
+        // function showClock() {
+        //     const d = new Date(),
+        //           hour = d.getHours();
+        //     let  min = d.getMinutes(),
+        //          sec = d.getSeconds();
+
+        //     if (min < 10) {
+        //         min = '0' + min;
+        //         parseInt(min);
+        //     }
+        //     if (sec < 10) {
+        //         sec = '0' + sec;
+        //         parseInt(sec);
+        //     }
+        //     const now = <div>{hour} : {min} : {sec}</div>;
+            
+        //     ReactDOM.render(now, document.getElementById('root'));
+        // }
+
+        class Clock extends React.Component {
+            state = {
+                now : new Date()
+            }
+
+            setInterval(() => this.setState({ now : new Date() }), 1000)
+
+            addZero(v) => {
+                (v < 10) ? v = '0' + v : v;
+                return v;
+            }
+
+            render() {
+                const now = this.state.now,
+                      h = now.getHours(),
+                      m = now.getMinutes(),
+                      s = now.getSeconds();
+
+                return (
+                    <div>{addZero(h)} : {addZero(m) : {addZero(s)}}</div>
+                )
+            }
+        }
+
+        ReactDOM.render(<div><Clock /></div>, document.getElemntById('root'));
+    </script>
+</body>
+</html>
