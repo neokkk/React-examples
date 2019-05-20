@@ -22,7 +22,6 @@ class NewsList extends Component {
         } catch (err) {
             console.error(err);
         }
-
         this.setState({ loading: false });
     }
 
