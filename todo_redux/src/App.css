@@ -49,8 +49,21 @@
 }
 
 .TodoList {
+    width: 100%;
 }
 
 .TodoItem {
     list-style: none;
+    height: 90px;
+    color: #f8b551;
+    cursor: pointer;
+}
+
+.TodoItem:hover {
+    background-color: rgba(248, 181, 81, 0.2);
+}
+
+.TodoItem .completed {
+    color: #d2d2d2;
+    cursor: default;
 }

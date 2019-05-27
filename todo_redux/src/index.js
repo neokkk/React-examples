@@ -12,9 +12,14 @@ import * as serviceWorker from './serviceWorker';
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 const store = createStore(rootReducer, devTools);
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>, 
-document.getElementById('root'));
+const render = () => {
+    ReactDOM.render(
+        <Provider store={store}>
+            <App />
+        </Provider>, 
+    document.getElementById('root'));
+}
+
+store.subscribe(render);
+render();
 serviceWorker.unregister();

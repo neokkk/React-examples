@@ -10,19 +10,17 @@ export const completeTodo = index => ({ type: COMPLETE_TODO, index });
 export default function todo(state = [], action) {
     switch (action.type) {
         case ADD_TODO:
-            return [...state, {
-                todo: action.todo,
-                completed: false
-            }];
+            return [
+                ...state,
+                { todo: action.todo, completed: false }
+            ]
 
         case COMPLETE_TODO:
             return [
                 ...state.slice(0, action.index),
-                Object.assign({}, state[action.index], {
-                  completed: true
-                }),
+                Object.assign({}, state[action.index], { completed: true }),
                 ...state.slice(action.index + 1)
-            ];
+            ]
 
         default:
             return state;
