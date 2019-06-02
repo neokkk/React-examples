@@ -8,15 +8,23 @@ import { addTodo, completeTodo } from './store/modules/todo';
 import './App.css';
 
 function App(props) {
-  const { dispatch } = props;
-
+  console.log('app : ', props);
   return (
     <div className="App">
       <h1>TODO</h1>
-      <AddTodo onTodoAdd={text => dispatch(addTodo(text))} />
-      <TodoList onTodoClick={index => dispatch(completeTodo(index))} />
+      <AddTodo onTodoAdd={text => addTodo(text)} />
+      <TodoList todos={props.todos} onTodoClick={index => completeTodo(index)} />
     </div>
   );
 }
 
-export default connect()(App);
+const mapStateToProps = state => ({
+  todos: state.todos
+});
+
+const mapDispatchToProps = dispatch => ({
+  addTodo: todo => dispatch(addTodo(todo)),
+  completeTodo: todo => dispatch(completeTodo(todo))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

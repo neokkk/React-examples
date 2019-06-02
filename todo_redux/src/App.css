@@ -1,3 +1,4 @@
+/* App */
 .App {
     width: 450px;
     height: 100%;
@@ -16,6 +17,7 @@
     background-color: #f8b551;
 }
 
+/* AddTodo */
 .AddTodo {
     width: 100%;
     height: 90px;
@@ -30,6 +32,7 @@
 }
 
 .AddTodo input {
+    font-weight: normal;
     width: 300px;
     height: 35px;
     box-sizing: border-box;
@@ -41,24 +44,57 @@
     width: 55px;
     height: 35px;
     color: white;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: bold;
     background-color: #f8b551;
     box-sizing: border-box;
     border: none;
 }
 
+/* TodoList */
 .TodoList {
     width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
+/* TodoItem */
+.TodoList li {
+    font-size: 12px;
+    font-weight: bold;
+    list-style: none;
+    height: 90px;
+    padding: 0 70px;
+    box-sizing: border-box;
+    color: #f8b551;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.TodoList li:hover {
+    background-color: rgba(248, 181, 81, 0.2);
+}
+
+.TodoList li .completed {
+    color: #d2d2d2;
+    cursor: default;
+}
+
+.TodoList li img {
+    width: 10px;
+    height: 10px;
+}
+
+/*
 .TodoItem {
     list-style: none;
     height: 90px;
     color: #f8b551;
     cursor: pointer;
 }
-
 .TodoItem:hover {
     background-color: rgba(248, 181, 81, 0.2);
 }
@@ -66,4 +102,4 @@
 .TodoItem .completed {
     color: #d2d2d2;
     cursor: default;
-}
+} */
