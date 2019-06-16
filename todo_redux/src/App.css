@@ -78,9 +78,18 @@
     background-color: rgba(248, 181, 81, 0.2);
 }
 
-.TodoList li .completed {
+.TodoList li.completed {
     color: #d2d2d2;
     cursor: default;
+    text-decoration: line-through;
+}
+
+.TodoList li.completed img {
+    color: #d2d2d2;
+}
+
+.TodoList li.completed:hover {
+    background-color: rgba(210, 210, 210, 0.2);
 }
 
 .TodoList li img {

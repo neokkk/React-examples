@@ -7,7 +7,7 @@ const TodoItem = props => {
             <span>{props.todo}</span>
             <img src={props.completed ? 'check.png' : 'exit.png'} />
         </li>
-    );
+    )
 };
 
 export default TodoItem;

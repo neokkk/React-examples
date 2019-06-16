@@ -12,8 +12,8 @@ function App(props) {
   return (
     <div className="App">
       <h1>TODO</h1>
-      <AddTodo onTodoAdd={text => addTodo(text)} />
-      <TodoList todos={props.todos} onTodoClick={index => completeTodo(index)} />
+      <AddTodo onAddTodo={todo => addTodo(todo)} />
+      <TodoList todos={props.todos} onClickTodo={index => completeTodo(index)} />
     </div>
   );
 }
@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addTodo: todo => dispatch(addTodo(todo)),
-  completeTodo: todo => dispatch(completeTodo(todo))
+  completeTodo: index => dispatch(completeTodo(index))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -13,7 +13,6 @@ const initialState = {
 
 // reducer
 export default function todo(state = initialState, action) {
-    console.log('todo reducer : ', state);
     switch (action.type) {
         case ADD_TODO:
             return {

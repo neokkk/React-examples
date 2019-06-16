@@ -3,13 +3,13 @@ import React, { useState, useRef } from 'react';
 const AddTodo = props => {
     const todo_input = useRef(null);
     const [input, setInput] = useState('');
-    const { onTodoAdd } = props;
+    const { onAddTodo } = props;
 
     const handleSubmit = () => {
         const todoInput = todo_input.current.value;
         console.log(todoInput);
 
-        onTodoAdd(todoInput);
+        onAddTodo(todoInput);
         todo_input.current.value = '';
         todo_input.current.focus();
     }
