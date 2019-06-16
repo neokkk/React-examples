@@ -3,11 +3,13 @@ import React from 'react';
 import Category from '../components/Category';
 import NewsList from '../components/NewsList';
 
-const NewsPage = () => {
+const NewsPage = ({ match }) => {
+    const category = match.params;
+
     return (
         <>
             <Category />
-            <NewsList />
+            <NewsList c={category} />
         </>
     );
 };

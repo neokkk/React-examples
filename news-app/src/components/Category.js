@@ -11,7 +11,7 @@ const Category = () => {
                     activeClassName='active'
                     exact={c === 'all'}
                     to={c === 'all' ? '/' : `/${c}`}>
-                        <a href=''>{c}</a>
+                        <li>{c}</li>
                 </Category>
             ))}
         </ul>

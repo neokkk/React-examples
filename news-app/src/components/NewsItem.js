@@ -1,10 +1,10 @@
 import React from 'react';
 
-const NewsItem = () => {
+const NewsItem = props => {
     return (
-        <div>
+        <NewsItem>
             
-        </div>
+        </NewsItem>
     );
 };
 
