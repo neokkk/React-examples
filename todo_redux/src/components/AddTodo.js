@@ -1,15 +1,20 @@
 import React, { useState, useRef } from 'react';
+import { connect } from 'react-redux';
+
+import { addTodo, changeInput } from '../store/modules/todo';
+console.log(addTodo());
 
 const AddTodo = props => {
     const todo_input = useRef(null);
     const [input, setInput] = useState('');
-    const { onAddTodo } = props;
 
     const handleSubmit = () => {
         const todoInput = todo_input.current.value;
         console.log(todoInput);
 
-        onAddTodo(todoInput);
+        addTodo(todoInput);
+        changeInput(todoInput);
+
         todo_input.current.value = '';
         todo_input.current.focus();
     }
@@ -22,4 +27,9 @@ const AddTodo = props => {
     );
 };
 
-export default AddTodo;
+const mapDispatchToProps = dispatch => ({
+    addTodo: todo => dispatch(addTodo(todo)),
+    changeInput: input => dispatch(changeInput(input))
+});
+
+export default connect(null, mapDispatchToProps)(AddTodo);
