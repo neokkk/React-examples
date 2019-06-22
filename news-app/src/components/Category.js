@@ -2,17 +2,16 @@ import React from 'react';
 
 const categories = ['all', 'business', 'entertainment', 'health', 'science', 'sports', 'technology'];
 
-const Category = () => {
+const Category = props => {
     return (
-        <ul>
+        <ul className='Category'>
             {categories.map((c, index) => (
-                <Category 
+                <li 
                     key={index}
-                    activeClassName='active'
+                    className={props.category === c ? 'active' : ''}
                     exact={c === 'all'}
-                    to={c === 'all' ? '/' : `/${c}`}>
-                        <li>{c}</li>
-                </Category>
+                    to={c === 'all' ? '/' : `/${c}`}>{c}
+                </li>
             ))}
         </ul>
     );

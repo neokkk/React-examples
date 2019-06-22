@@ -13,11 +13,11 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_
 const store = createStore(rootReducer, devTools);
 
 ReactDOM.render(
-    <Provider store={store}>
-        <BrowserRouter>
+    <BrowserRouter>
+        <Provider store={store}>
             <App />
-        </BrowserRouter>
-    </Provider>,
+        </Provider>
+    </BrowserRouter>,
     document.getElementById('root'));
 
 serviceWorker.unregister();

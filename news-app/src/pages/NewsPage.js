@@ -4,12 +4,12 @@ import Category from '../components/Category';
 import NewsList from '../components/NewsList';
 
 const NewsPage = ({ match }) => {
-    const category = match.params;
+    const category = match.params || 'all';
 
     return (
         <>
-            <Category />
-            <NewsList c={category} />
+            <Category category={category} />
+            <NewsList category={category} />
         </>
     );
 };
