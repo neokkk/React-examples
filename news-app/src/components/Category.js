@@ -8,7 +8,7 @@ const Category = props => {
             {categories.map((c, index) => (
                 <li 
                     key={index}
-                    className={props.category === c ? 'active' : ''}
+                    className={(props.category === c || '') ? 'active' : ''}
                     exact={c === 'all'}
                     to={c === 'all' ? '/' : `/${c}`}>{c}
                 </li>
