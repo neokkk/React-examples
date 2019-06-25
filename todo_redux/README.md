@@ -1,7 +1,7 @@
 ## TODOLIST
 
-This project was bootstrapped with Create React App.
-This project was designed and developed by Neok.
+This project was bootstrapped with Create React App. <br>
+This project was designed and developed by Neok. <br>
 
 
 ### `Stack`
