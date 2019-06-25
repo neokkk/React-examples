@@ -10,19 +10,11 @@ const TodoList = props => {
 
     return (
         <ul className="TodoList">
-            {todos && todos.map((todo, index) => 
-                <TodoItem todo={todo} key={index} onClick={() => completeTodo(index)} />
+            {todos && todos.map(todo => 
+                <TodoItem todo={todo} key={todo.id} onComplete={completeTodo} />
             )}
         </ul>
     );
 };
 
-const mapStateToProps = state => ({
-    todos: state.todos
-});
-  
-const mapDispatchToProps = dispatch => ({
-    completeTodo: index => dispatch(completeTodo(index))
-});  
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default connect(state => ({ todos: state.todo.todos }), { completeTodo })(TodoList);

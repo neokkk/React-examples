@@ -14,8 +14,11 @@ const initialState = {
     todos: []
 }
 
+let id = 1;
+
 // reducer
 export default function todo(state = initialState, action) {
+
     switch (action.type) {
         case CHANGE_INPUT:
             return {
@@ -27,6 +30,7 @@ export default function todo(state = initialState, action) {
             return {
                 ...state,
                 todos: state.todos.concat({
+                    id: id++,
                     todo: action.todo,
                     completed: false
                 })
@@ -35,7 +39,7 @@ export default function todo(state = initialState, action) {
         case COMPLETE_TODO:
             return {
                 ...state,
-                todos: state.todos.forEach(todo => todo.index === action.index ? `${todo.completed}= true` : todo)
+                todos: state.todos.map(todo => todo.id === action.index ? {...todo, completed: !todo.completed} : todo)
             }
 
         default:

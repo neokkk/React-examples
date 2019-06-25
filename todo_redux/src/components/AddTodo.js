@@ -1,35 +1,40 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { addTodo, changeInput } from '../store/modules/todo';
-console.log(addTodo());
 
 const AddTodo = props => {
-    const todo_input = useRef(null);
-    const [input, setInput] = useState('');
+    const { input, addTodo, changeInput } = props;
 
-    const handleSubmit = () => {
-        const todoInput = todo_input.current.value;
-        console.log(todoInput);
+    const handleSubmit = e => {
+        e.preventDefault();
 
-        addTodo(todoInput);
-        changeInput(todoInput);
+        addTodo(input);
+        changeInput('');
+    }
 
-        todo_input.current.value = '';
-        todo_input.current.focus();
+    const handleChange = e => {
+        const input = e.target.value;
+
+        if (input.length > 21) {
+            alert('20자 이내로 작성해주세요.');
+            return;
+        }
+
+        changeInput(input);
     }
 
     return (
-        <form onSubmit={e => { e.preventDefault(); handleSubmit(); }} className="AddTodo">
-            <input ref={todo_input} onChange={e => setInput(e.target.value)} placeholder='Please Enter your todos' required />
+        <form onSubmit={handleSubmit} className="AddTodo">
+            <input value={input} onChange={handleChange} placeholder='Please Enter your todos' required />
             <button>add</button>
         </form>
     );
 };
 
-const mapDispatchToProps = dispatch => ({
-    addTodo: todo => dispatch(addTodo(todo)),
-    changeInput: input => dispatch(changeInput(input))
-});
-
-export default connect(null, mapDispatchToProps)(AddTodo);
+export default connect(state => ({
+    input: state.todo.input
+}), {
+    addTodo,
+    changeInput
+})(AddTodo);
